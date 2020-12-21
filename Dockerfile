@@ -11,7 +11,7 @@ CMD ["npm", "run", "build"]
 
 # Second phase, run
 FROM nginx
-
+EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
 
 # the default command from nginx will execute
