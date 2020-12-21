@@ -1,18 +1,18 @@
 # First phase, build
-FROM node:alpine as builder
+FROM node:alpine
 
 WORKDIR '/app'
-COPY package.json .
+COPY package*.json ./
 RUN npm install 
 
-COPY . . 
+COPY ./ ./ 
 
 CMD ["npm", "run", "build"]
 
 # Second phase, run
 FROM nginx
 EXPOSE 80
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 
 # the default command from nginx will execute
 # so we do not need to specify CMD
