@@ -4,18 +4,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t jperezsl/docker-react -f Dockerfile.dev .
+  - docker build -t jperezsl/docker-react-2 -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true jperezsl/docker-react npm run test
+  - docker run -e CI=true jperezsl/docker-react-2 npm run test
 
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
-  app: "docker-react"
-  env: "DockerReact-env"
+  app: "docker-react-2"
+  env: "DockerReact2-env"
   bucket_name: "elasticbeanstalk-us-east-1-569724667046"
-  bucket_path: "docker-react"
+  bucket_path: "docker-react-2"
   on: 
     branch: master
 
